@@ -1,7 +1,7 @@
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES'
 export const ADD_MOVIE = 'ADD_MOVIE'
 
-import { retrieveMovies } from "../apis/apiClient"
+import { retrieveMovies, insertMovie } from "../apis/apiClient"
 
 //Action that goes to the reducer to show movies in the database
 
@@ -32,6 +32,16 @@ export function addMovie(newMovie) {
   return {
     type: ADD_MOVIE,
     payload: newMovie
+  }
+}
+
+export function pushMovie(newMovie) {
+  return (dispatch) => {
+    return insertMovie(newMovie)
+      .then(movie => dispatch(addMovie(movie)))
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

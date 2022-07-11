@@ -7,7 +7,7 @@ function AddMovie() {
   const [search, setSearch] = useState('')
   const [result, getResults] = useState([])
 
-  console.log('RESULTS', result)
+  // console.log('RESULTS', result)
 
   const handleChange = (e) => {
     let userSearch = e.target.value
@@ -37,13 +37,14 @@ function AddMovie() {
       </div>
       <div className='add-movie-results'>
         {result && result.map(movie => {
-          // console.log('movie', movie)
-         return <div className="search-result-tile">
+         return (
+         <div className="search-result-tile" key={movie.id}>
             <img src={movie.image} alt={`Poster for ${movie.title}`} />
             <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
             <p>{movie.description}</p>
+            <button>Add</button>
           </div>
-          
+         )
         })}
       </div>
     </>

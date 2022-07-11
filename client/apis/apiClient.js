@@ -7,7 +7,6 @@ const searchApi = 'https://imdb-api.com/en/API/SearchMovie/k_ad77adjj'
 //api functions
 
 export function getImdbInfo(imdbId) {
-  console.log(imdbId)
   return request.get(`${extApi}/${imdbId}`).then((res) => {
     return res.body
   })

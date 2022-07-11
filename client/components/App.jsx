@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from './Nav'
-import ShowMovies from './Movies'
+import ShowMovies from './ShowMovies'
 import OneMovie from './OneMovie'
 import AddMovie from './AddMovie'
 import { Routes, Route } from 'react-router'

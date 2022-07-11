@@ -8,7 +8,7 @@ function ShowMovies () {
   const dispatch = useDispatch()
   
   const movies = useSelector(state => state.movies)
-  console.log('MOVIES STATE', movies)
+  // console.log('MOVIES STATE', movies)
 
   useEffect(() => {
     return dispatch(fetchMovies())
@@ -18,7 +18,7 @@ function ShowMovies () {
     <div className='all-movies-container'>
       {movies.map(movie => {
         return (
-        <div className='movie-tile' key={movies.id}>
+        <div className='movie-tile' key={movie.id}>
           <img src={movie.img} alt={`Cinema poster for ${movie.title}`} />
           <Link to={`/movies/${movie.imdb_id}`}>
           <p>{movie.title}</p>
