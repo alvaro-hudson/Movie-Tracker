@@ -49,6 +49,17 @@ body {
 
 .one-movie-text {
   padding: 25px;
+}
 
+.add-movie-results {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.add-movie-results img {
+  padding: 25px;
+  height: 300px;
+  width: 200px;
 }
 

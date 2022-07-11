@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { searchImdbInfo } from '../apis/apiClient'
+import { Link } from 'react-router-dom'
 
 function AddMovie() {
 
   const [search, setSearch] = useState('')
-  const [results, getResults] = useState([])
+  const [result, getResults] = useState([])
 
-  console.log('RESULTS', results)
+  console.log('RESULTS', result)
 
   const handleChange = (e) => {
     let userSearch = e.target.value
@@ -17,7 +18,7 @@ function AddMovie() {
     e.preventDefault()
     searchImdbInfo(search)
       .then(res => {
-        getResults(res)
+        getResults(res.results)
       })
       .catch(err => {
         console.log(err)
@@ -35,7 +36,15 @@ function AddMovie() {
         </form>
       </div>
       <div className='add-movie-results'>
-
+        {result && result.map(movie => {
+          // console.log('movie', movie)
+         return <div className="search-result-tile">
+            <img src={movie.image} alt={`Poster for ${movie.title}`} />
+            <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
+            <p>{movie.description}</p>
+          </div>
+          
+        })}
       </div>
     </>
   )
