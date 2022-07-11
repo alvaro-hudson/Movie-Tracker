@@ -4,7 +4,7 @@ const rootUrl = '/api/v1/movies'
 
 //api functions
 
-
+export function retrieve
 
 
 
