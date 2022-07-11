@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from './Nav'
 import ShowMovies from './Movies'
 import OneMovie from './OneMovie'
+import AddMovie from './AddMovie'
 import { Routes, Route } from 'react-router'
 
 function App () {
@@ -11,7 +12,8 @@ function App () {
         <Nav />
         <Routes>
           <Route path='/' element={ <ShowMovies /> } />
-          <Route path='/movies' element={ <OneMovie />} />
+          <Route path='/movies/:imdbId' element={ <OneMovie />} />
+          <Route path='/add' element={<AddMovie />}></Route>
         </Routes>
 
       </section>

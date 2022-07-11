@@ -8,7 +8,7 @@ function ShowMovies () {
   const dispatch = useDispatch()
   
   const movies = useSelector(state => state.movies)
-  console.log(movies)
+  console.log('MOVIES STATE', movies)
 
   useEffect(() => {
     return dispatch(fetchMovies())
@@ -20,7 +20,7 @@ function ShowMovies () {
         return (
         <div className='movie-tile' key={movies.id}>
           <img src={movie.img} alt={`Cinema poster for ${movie.title}`} />
-          <Link to={'/movies'}>
+          <Link to={`/movies/${movie.imdb_id}`}>
           <p>{movie.title}</p>
           </Link>
         </div>

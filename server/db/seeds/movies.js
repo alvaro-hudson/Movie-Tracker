@@ -17,5 +17,12 @@ exports.seed = async function(knex) {
       imdb_id: 'tt2543164',
       watched: false,
     },
+    { 
+      id: 3,
+      title: 'Weekend At Bernies',
+      img: 'https://imdb-api.com/images/original/MV5BNTQyMTYyYTAtYzU4MS00ODZhLTk1ODEtNjAwNzkxZWUyNzJjXkEyXkFqcGdeQXVyMTg2OTA4OQ@@._V1_Ratio0.7273_AL_.jpg',
+      imdb_id: 'tt0098627',
+      watched: false,
+    },
   ]);
 };
