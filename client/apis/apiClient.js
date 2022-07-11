@@ -2,6 +2,15 @@ import request from "superagent"
 
 const rootUrl = '/api/v1/movies'
 
+//api functions
+
+
+
+
+
+
+//Database functions
+
 export function retrieveMovies() {
   return request.get(rootUrl)
     .then(res => res.body)  //this gets all the movies from the database
