@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom'
 export default function Nav() {
 
   const { pathname } = useLocation()
-  console.log('LOCATION PATHNAME', pathname)
 
   const NavDisplay = (pathname) => {
     switch (pathname) {

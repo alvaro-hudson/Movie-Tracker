@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import { searchImdbInfo } from '../apis/apiClient'
 import { Link } from 'react-router-dom'
+import { pushMovie } from '../actions/actions'
+// import { MovieSearch } from './MovieSearch'
 
 function AddMovie() {
 
   const [search, setSearch] = useState('')
   const [result, getResults] = useState([])
+  const [newMovie, setNewMovie] = useState({
+    title: '',
+    img: '',
+    imdb_id: '',
+    watched: false
+  })
 
-  // console.log('RESULTS', result)
+  console.log('RESULTS', result)
+  console.log('NEW MOVIE', newMovie)
 
   const handleChange = (e) => {
     let userSearch = e.target.value
@@ -25,9 +34,22 @@ function AddMovie() {
       })
   }
 
+  const clickHandler = (e) => {
+    e.preventDefault()
+    setNewMovie({
+      title: result.title,
+      img: result.image,
+      imdb_id: result.id,
+      watched: false
+    })
+    pushMovie(newMovie)
+  }
+
   return (
     <>
       <h1>Add New Movie</h1>
+
+
       <div className='add-movie-form-container'>
         <form onSubmit={handleSubmit}>
           <label htmlFor="search">Search </label>
@@ -35,6 +57,7 @@ function AddMovie() {
           <button>Done</button>
         </form>
       </div>
+
       <div className='add-movie-results'>
         {result && result.map(movie => {
          return (
@@ -42,7 +65,7 @@ function AddMovie() {
             <img src={movie.image} alt={`Poster for ${movie.title}`} />
             <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
             <p>{movie.description}</p>
-            <button>Add</button>
+            <button onClick={clickHandler}>Add</button>
           </div>
          )
         })}
