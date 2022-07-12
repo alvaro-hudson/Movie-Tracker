@@ -1,8 +1,9 @@
 import request from 'superagent'
+const KEY = process.env.IMDB_KEY
 
 const rootUrl = '/api/v1/movies'
-const extApi = 'https://imdb-api.com/en/API/title/k_ad77adjj'
-const searchApi = 'https://imdb-api.com/en/API/SearchMovie/k_ad77adjj'
+const extApi = 'https://imdb-api.com/en/API/title/' + KEY
+const searchApi = 'https://imdb-api.com/en/API/SearchMovie/' + KEY
 
 //api functions
 
@@ -13,8 +14,7 @@ export function getImdbInfo(imdbId) {
 }
 
 export function searchImdbInfo(name) {
-  return request.get(`${searchApi}/${name}`)
-    .then(res => res.body)
+  return request.get(`${searchApi}/${name}`).then((res) => res.body)
 }
 
 //Database functions
@@ -24,6 +24,7 @@ export function retrieveMovies() {
 }
 
 export function insertMovie(newMovie) {
+  console.log('API', newMovie)
   return request
     .post(rootUrl)
     .send(newMovie)

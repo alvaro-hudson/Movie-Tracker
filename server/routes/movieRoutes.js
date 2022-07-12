@@ -6,7 +6,7 @@ module.exports = router
 
 router.get('/', (req, res) => {
   db.getMovies()
-    .then(movies => {
+    .then((movies) => {
       res.json(movies)
     })
     .catch((err) => {
@@ -16,11 +16,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const newMovie = req.body
+  console.log('ROUTE', newMovie)
   db.addMovie(newMovie)
-    .then(iddArr => {
+    .then((iddArr) => {
       const id = iddArr
       db.getOneMovie(id)
-        .then(movie => {
+        .then((movie) => {
           res.send(movie)
         })
         .catch((err) => {
@@ -31,5 +32,3 @@ router.post('/', (req, res) => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
-
-

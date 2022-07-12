@@ -1,26 +1,20 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { searchImdbInfo } from '../apis/apiClient'
 import { Link } from 'react-router-dom'
 import { pushMovie } from '../actions/actions'
 // import { MovieSearch } from './MovieSearch'
 
 function AddMovie() {
+  const dispatch = useDispatch()
 
   const [search, setSearch] = useState('')
   const [result, getResults] = useState([])
-  const [newMovie, setNewMovie] = useState({
-    title: '',
-    img: '',
-    imdb_id: '',
-    watched: false
-  })
 
   console.log('RESULTS', result)
-  console.log('NEW MOVIE', newMovie)
 
   const handleChange = (e) => {
-    let userSearch = e.target.value
-    setSearch(userSearch)
+    setSearch(e.target.value)
   }
 
   const handleSubmit = (e) => {
@@ -34,15 +28,14 @@ function AddMovie() {
       })
   }
 
-  const clickHandler = (e) => {
-    e.preventDefault()
-    setNewMovie({
-      title: result.title,
-      img: result.image,
-      imdb_id: result.id,
+  const clickHandler = (movie) => {
+    console.log('MOVIE', movie)
+    dispatch(pushMovie({
+      title: movie.title,
+      img: movie.image,
+      imdb_id: movie.id,
       watched: false
-    })
-    pushMovie(newMovie)
+    }))
   }
 
   return (
@@ -65,7 +58,7 @@ function AddMovie() {
             <img src={movie.image} alt={`Poster for ${movie.title}`} />
             <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
             <p>{movie.description}</p>
-            <button onClick={clickHandler}>Add</button>
+            <button onClick={() => clickHandler(movie)}>Add</button>
           </div>
          )
         })}
