@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { searchImdbInfo } from '../apis/apiClient'
-import { Link } from 'react-router-dom'
+import MovieTile from './MovieTile'
 import { pushMovie } from '../actions/actions'
 // import { MovieSearch } from './MovieSearch'
 
@@ -11,7 +11,7 @@ function AddMovie() {
   const [search, setSearch] = useState('')
   const [result, getResults] = useState([])
 
-  console.log('RESULTS', result)
+  // console.log('RESULTS', result)
 
   const handleChange = (e) => {
     setSearch(e.target.value)
@@ -29,7 +29,6 @@ function AddMovie() {
   }
 
   const clickHandler = (movie) => {
-    console.log('MOVIE', movie)
     dispatch(pushMovie({
       title: movie.title,
       img: movie.image,
@@ -52,16 +51,7 @@ function AddMovie() {
       </div>
 
       <div className='add-movie-results'>
-        {result && result.map(movie => {
-         return (
-         <div className="search-result-tile" key={movie.id}>
-            <img src={movie.image} alt={`Poster for ${movie.title}`} />
-            <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
-            <p>{movie.description}</p>
-            <button onClick={() => clickHandler(movie)}>Add</button>
-          </div>
-         )
-        })}
+        {result && <MovieTile clickHandler={clickHandler} result={result}/>}
       </div>
     </>
   )
