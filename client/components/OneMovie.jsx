@@ -9,6 +9,7 @@ function OneMovie() {
 
   const [movie, movieInfo] = useState([])
   // {movie && console.log('IMDB INFO', movie)}
+  console.log('Movie', movie)
 
   useEffect(() => {
     getImdbInfo(imdbId)
