@@ -1,7 +1,8 @@
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES'
 export const ADD_MOVIE = 'ADD_MOVIE'
+export const DEL_MOVIE = 'DEL_MOVIE'
 
-import { retrieveMovies, insertMovie } from '../apis/apiClient'
+import { retrieveMovies, insertMovie, deleteMovie } from '../apis/apiClient'
 
 //Actions
 
@@ -17,6 +18,13 @@ export function addMovie(newMovie) {
   return {
     type: ADD_MOVIE,
     payload: newMovie,
+  }
+}
+
+export function delMovie(id) {
+  return {
+    type: DEL_MOVIE,
+    payload: id
   }
 }
 
@@ -41,6 +49,19 @@ export function pushMovie(newMovie) {
     return insertMovie(newMovie)
       .then((movie) => {
         dispatch(addMovie(movie))
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+}
+
+export function removeMovie(id) {
+  return (dispatch) => {
+    console.log('thunk', id)
+    return deleteMovie(id)
+      .then(() => {
+        dispatch(delMovie(id))
       })
       .catch((err) => {
         console.log(err)

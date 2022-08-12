@@ -1,4 +1,4 @@
-import { RECEIVE_MOVIES, ADD_MOVIE } from '../actions/actions'
+import { RECEIVE_MOVIES, ADD_MOVIE, DEL_MOVIE } from '../actions/actions'
 
 
 const MoviesReducer = (state = [], action) => {
@@ -8,6 +8,8 @@ const MoviesReducer = (state = [], action) => {
       return payload
     case ADD_MOVIE:
       return [...state, payload]
+    case DEL_MOVIE:
+      return state.filter(movie => movie.imbd_id !== payload)
     default:
       return state
   }

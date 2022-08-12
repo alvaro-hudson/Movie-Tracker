@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getImdbInfo } from '../apis/apiClient'
+import { useDispatch } from 'react-redux'
+import { removeMovie } from '../actions/actions'
 
 function OneMovie() {
+
+  const dispatch = useDispatch()
 
   const { imdbId } = useParams()
   // const imdbId = useParams().imdbId   //This is the same version as above but written out differently
 
   const [movie, movieInfo] = useState([])
   // {movie && console.log('IMDB INFO', movie)}
-  console.log('Movie', movie)
+  console.log('Movie', movie.id)
 
   useEffect(() => {
     getImdbInfo(imdbId)
@@ -21,6 +25,12 @@ function OneMovie() {
       })
   }, [])
 
+  const handleSubmit = (e) => {
+    console.log('handleSubmit')
+    // e.preventDefault()
+    dispatch(removeMovie(movie.id))
+  }
+
   return (
     <div className='one-movie-container'>
       <div className='one-movie-image'>
@@ -29,7 +39,7 @@ function OneMovie() {
       <div className='one-movie-text'>
         <h1>{movie.title}   ({movie.year})</h1>
         <button>Watched</button>
-        <button>Delete</button>
+        <button onClick={handleSubmit}>Delete</button>
         <p><em>{movie.awards}</em></p>
         <p><em>{movie.genres}</em></p>
         <p><em>{movie.runtimeStr}</em></p>

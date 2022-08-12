@@ -24,9 +24,12 @@ export function retrieveMovies() {
 }
 
 export function insertMovie(newMovie) {
-  console.log('API', newMovie)
   return request
     .post(rootUrl)
     .send(newMovie)
     .then((res) => res.body) //this returns the movie that was added
+}
+
+export function deleteMovie(id) {
+  return request.del(`${rootUrl}/${id}`).then(res => res.body) //this returns status 200
 }
