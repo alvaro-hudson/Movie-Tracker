@@ -20,6 +20,7 @@ router.post('/', (req, res) => {
   db.addMovie(newMovie)
     .then((iddArr) => {
       const id = iddArr
+      // eslint-disable-next-line promise/no-nesting
       db.getOneMovie(id)
         .then((movie) => {
           res.send(movie)
@@ -27,6 +28,17 @@ router.post('/', (req, res) => {
         .catch((err) => {
           res.status(500).send('DATABASE ERROR: ' + err.message)
         })
+    })
+    .catch((err) => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  db.deleteMovie(id)
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch((err) => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
