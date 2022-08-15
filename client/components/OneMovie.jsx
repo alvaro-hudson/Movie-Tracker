@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getImdbInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { removeMovie } from '../actions/actions'
@@ -13,8 +13,7 @@ function OneMovie() {
 
   const [movie, movieInfo] = useState([])
   // {movie && console.log('IMDB INFO', movie)}
-  
-  //To change the delete button I should create a new state. Its default is true and the normal delete button shows. But when false it then shows another button thing shows it's been deleted, maybe a p tag
+  const [deleted, deleteStatus] = useState(true)
 
   useEffect(() => {
     getImdbInfo(imdbId)
@@ -29,8 +28,9 @@ function OneMovie() {
   //To Delete - runs the thunk in actions.js
   const handleClick = () => {
     dispatch(removeMovie(movie.id))
-    let deleteButton = document.querySelector('.delete-btn')
-    deleteButton.innerHTML = 'DELETED'
+    deleteStatus(false)
+    // let deleteButton = document.querySelector('.delete-btn')
+    // deleteButton.innerHTML = 'DELETED'
   }
 
 
@@ -41,8 +41,8 @@ function OneMovie() {
       </div>
       <div className='one-movie-text'>
         <h1>{movie.title}   ({movie.year})</h1>
-        <button className='watched-btn' onClick={test}>Watched</button>
-        <button className='delete-btn' onClick={handleClick}>Delete</button>
+        <button>Watched</button>
+        {deleted ? <Link to={'/'} ><button className='delete-btn' onClick={handleClick}>Delete</button></Link> : <p>DELETED</p>}
         <p><em>{movie.awards}</em></p>
         <p><em>{movie.genres}</em></p>
         <p><em>{movie.runtimeStr}</em></p>
