@@ -13,7 +13,8 @@ function OneMovie() {
 
   const [movie, movieInfo] = useState([])
   // {movie && console.log('IMDB INFO', movie)}
-  console.log('Movie', movie.id)
+  
+  //To change the delete button I should create a new state. Its default is true and the normal delete button shows. But when false it then shows another button thing shows it's been deleted, maybe a p tag
 
   useEffect(() => {
     getImdbInfo(imdbId)
@@ -25,11 +26,13 @@ function OneMovie() {
       })
   }, [])
 
-  const handleSubmit = (e) => {
-    console.log('handleSubmit')
-    // e.preventDefault()
+  //To Delete - runs the thunk in actions.js
+  const handleClick = () => {
     dispatch(removeMovie(movie.id))
+    let deleteButton = document.querySelector('.delete-btn')
+    deleteButton.innerHTML = 'DELETED'
   }
+
 
   return (
     <div className='one-movie-container'>
@@ -38,8 +41,8 @@ function OneMovie() {
       </div>
       <div className='one-movie-text'>
         <h1>{movie.title}   ({movie.year})</h1>
-        <button>Watched</button>
-        <button onClick={handleSubmit}>Delete</button>
+        <button className='watched-btn' onClick={test}>Watched</button>
+        <button className='delete-btn' onClick={handleClick}>Delete</button>
         <p><em>{movie.awards}</em></p>
         <p><em>{movie.genres}</em></p>
         <p><em>{movie.runtimeStr}</em></p>
