@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getImdbInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { removeMovie } from '../actions/actions'
@@ -7,6 +7,7 @@ import { removeMovie } from '../actions/actions'
 function OneMovie() {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { imdbId } = useParams()
   // const imdbId = useParams().imdbId   //This is the same version as above but written out differently
@@ -27,10 +28,9 @@ function OneMovie() {
 
   //To Delete - runs the thunk in actions.js
   const handleClick = () => {
-    dispatch(removeMovie(movie.id))
     deleteStatus(false)
-    // let deleteButton = document.querySelector('.delete-btn')
-    // deleteButton.innerHTML = 'DELETED'
+    dispatch(removeMovie(movie.id))
+    setTimeout(() => navigate('/'), 1200)
   }
 
 
@@ -42,7 +42,7 @@ function OneMovie() {
       <div className='one-movie-text'>
         <h1>{movie.title}   ({movie.year})</h1>
         <button>Watched</button>
-        {deleted ? <Link to={'/'} ><button className='delete-btn' onClick={handleClick}>Delete</button></Link> : <p>DELETED</p>}
+        {deleted ? <button className='delete-btn' onClick={handleClick}>Delete</button> : <p>DELETED</p> }
         <p><em>{movie.awards}</em></p>
         <p><em>{movie.genres}</em></p>
         <p><em>{movie.runtimeStr}</em></p>
