@@ -75,8 +75,12 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
+    "@emotion/core": "^10.3.1",
+    "@emotion/styled": "^10.3.0",
     "dotenv": "^16.0.1",
     "dotenv-webpack": "^8.0.0",
+    "emotion-theming": "^10.3.0",
     "express": "^4.17.2",
     "knex": "^2.1.0",
     "pg": "^8.7.1",
