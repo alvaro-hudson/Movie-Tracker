@@ -13,7 +13,7 @@ import {
 function App () {
   return (
       <Box Width='100%' padding={0}>
-        <Flex flexDirection='column' h='auto'>
+        <Flex flexDirection='column'>
           <Nav />
           <Routes>
             <Route path='/' element={ <ShowMovies /> } />

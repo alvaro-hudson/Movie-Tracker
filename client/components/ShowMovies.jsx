@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchMovies } from '../actions/actions'
 import { Link } from 'react-router-dom'
 import {
-  
+  AspectRatioBox,
+  Stack,
+  Text,
+  Image,
+  Grid,
+  Box
 } from '@chakra-ui/core'
 
 function ShowMovies () {
@@ -16,20 +21,27 @@ function ShowMovies () {
   useEffect(() => {
     return dispatch(fetchMovies())
   }, [])
+
+
   
   return (
-    <div className='all-movies-container'>
+    <Stack isInline w='full' h='auto'>
+      <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6}>
       {movies.map(movie => {
         return (
-        <div className='movie-tile' key={movie.id}>
-          <img src={movie.img} alt={`Cinema poster for ${movie.title}`} />
+
+        <Box size="2xs" p={5} justifyItems='center' key={movie.id} w='100%' h='auto'>
           <Link to={`/movies/${movie.imdb_id}`}>
-          <p>{movie.title}</p>
+            <AspectRatioBox ratio={4/6}>
+              <Image src={movie.img} alt={`Cinema poster for ${movie.title}`} />
+            </AspectRatioBox>
+            <Text textAlign='center'>{movie.title}</Text>
           </Link>
-        </div>
+        </Box>
         )
       })}
-    </div>
+      </Grid>
+    </Stack>
 
   )
 }
