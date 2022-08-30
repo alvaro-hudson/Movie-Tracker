@@ -1,3 +1,11 @@
+# Movie Tracker
+
+This is a full-stack project that was started during Dev Academy Aotearoa. 
+
+I have picked this up again and am looking to complete the functionality designed below but also want to spend time practicing using a CSS framework, in this case Chakra. It's a chance for me to practice both front and back-end and toy around with different ideas.
+
+----------------------------------------------------------------------------------------
+
 # Fullstack Code Along
 
 This repo is designed to provide a base for the code along during a week 8 breakout lecture, though it is unlikely we will complete all of it in the breakout. It contains node modules and folders for databases, routes, api requests, react components, and redux actions and creators, but these need to be written as none have yet been written.
