@@ -4,23 +4,24 @@ import ShowMovies from './ShowMovies'
 import OneMovie from './OneMovie'
 import AddMovie from './AddMovie'
 import { Routes, Route } from 'react-router'
-import { ThemeProvider } from '@chakra-ui/core'
-import customTheme from '../styles/theme'
+import {
+  Box,
+  Flex
+} from '@chakra-ui/core'
 
 
 function App () {
   return (
-    <ThemeProvider theme={customTheme}>
-      <section className="main">
-        <Nav />
-        <Routes>
-          <Route path='/' element={ <ShowMovies /> } />
-          <Route path='/movies/:imdbId' element={ <OneMovie />} />
-          <Route path='/add' element={<AddMovie />}></Route>
-        </Routes>
-
-      </section>
-    </ThemeProvider>
+      <Box Width='100%' padding={0}>
+        <Flex flexDirection='column'>
+          <Nav />
+          <Routes>
+            <Route path='/' element={ <ShowMovies /> } />
+            <Route path='/movies/:imdbId' element={ <OneMovie />} />
+            <Route path='/add' element={<AddMovie />}></Route>
+          </Routes>
+        </Flex>
+      </Box>
   )
 }
 

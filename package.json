@@ -77,11 +77,13 @@
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.3.1",
+    "@emotion/react": "^11.0.0",
     "@emotion/styled": "^10.3.0",
     "dotenv": "^16.0.1",
     "dotenv-webpack": "^8.0.0",
     "emotion-theming": "^10.3.0",
     "express": "^4.17.2",
+    "framer-motion": "^4.0.0",
     "knex": "^2.1.0",
     "pg": "^8.7.1",
     "sqlite3": "^5.0.8",

@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import { BrowserRouter as Router } from 'react-router-dom'
 import reducers from './reducers'
 import App from './components/App'
+import { ThemeProvider, CSSReset, theme} from '@chakra-ui/core'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)))
@@ -14,7 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
       <Router>
-        <App />
+        <ThemeProvider theme={theme}>
+          <CSSReset />
+         <App />
+        </ThemeProvider>
       </Router>
     </Provider>,
     document.getElementById('app')
