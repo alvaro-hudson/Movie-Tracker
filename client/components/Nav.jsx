@@ -1,5 +1,10 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import {
+  Stack,
+  Heading,
+  Button,
+} from '@chakra-ui/core'
 
 export default function Nav() {
 
@@ -8,24 +13,24 @@ export default function Nav() {
   const NavDisplay = (pathname) => {
     switch (pathname) {
       case '/':
-        return <Link to={'/add'}><p>Add New</p></Link>
+        return <Button><Link to={'/add'}>Add New</Link></Button>
       case '/add': 
-        return <Link to={'/'}> <p>All Movies</p> </Link>
+        return <Button><Link to={'/'}>All Movies</Link></Button>
       default:
         return (
-          <>
-            <Link to={'/'}> <p>All Movies</p>
-            </Link> <Link to={'/add'}><p>Add New</p></Link> 
-        </>
+          <Stack isInline>
+            <Button><Link to={'/'}>All Movies</Link></Button>
+            <Button><Link to={'/add'}><p>Add New</p></Link> </Button>
+          </Stack>
         )
     }
   }
 
   return (
-    <div className='nav'>
-      <h1>Alvaro&apos;s Movie Watchlist</h1>
+    <Stack isInline w="full" h='full' px={20} py={10} bg='orange.50' justifyContent='space-between'>
+      <Heading>Alvaro&apos;s Movie Watchlist</Heading>
       {pathname && NavDisplay(pathname)}
-    </div>
+    </Stack>
   )
 }
 

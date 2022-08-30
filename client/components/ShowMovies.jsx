@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchMovies } from '../actions/actions'
 import { Link } from 'react-router-dom'
 import {
-  Box
+  
 } from '@chakra-ui/core'
 
 function ShowMovies () {
