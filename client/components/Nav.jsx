@@ -27,7 +27,7 @@ export default function Nav() {
   }
 
   return (
-    <Stack isInline w="full" h='full' px={20} py={10} bg='orange.50' justifyContent='space-between'>
+    <Stack isInline w="full" h='full' px={20} py={10} bg='red.200' justifyContent='space-between'>
       <Heading>Alvaro&apos;s Movie Watchlist</Heading>
       {pathname && NavDisplay(pathname)}
     </Stack>
