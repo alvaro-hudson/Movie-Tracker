@@ -44,11 +44,11 @@ function OneMovie() {
   console.log(movie)
 
   return (
-    <Stack isInline bg='black' color='white'>
-      <AspectRatioBox w='40%' h='80%' ratio={4/6} p={6}>
-        <Image src={movie.image} alt={`Movie poster for ${movie.image}`} />
+    <Stack isInline bg='black' color='white' h='100%' p={10}>
+      <AspectRatioBox w={['50%', '50%', '50%', '40%']} h='100%' ratio={4/6} display='flex'>
+        <Image src={movie.image} alt={`Movie poster for ${movie.image}`} p={3} alignItems='center'/>
       </AspectRatioBox>
-      <Stack className='one-movie-text' w='60%' p={6}>
+      <Stack className='one-movie-text' w='60%' h='100%'>
         <Heading>{movie.title}   ({movie.year})</Heading>
         <Stack isInline>
           <Button color='black'>Watched</Button>
