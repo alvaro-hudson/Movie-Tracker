@@ -18,9 +18,9 @@ export default function Nav() {
         return <Button><Link to={'/'}>All Movies</Link></Button>
       default:
         return (
-          <Stack isInline>
-            <Button><Link to={'/'}>All Movies</Link></Button>
-            <Button><Link to={'/add'}><p>Add New</p></Link> </Button>
+          <Stack flexDirection={{ small: 'column', md: 'row '}}>
+            <Button margin={1}><Link to={'/'}>All Movies</Link></Button>
+            <Button margin={1}><Link to={'/add'}><p>Add New</p></Link> </Button>
           </Stack>
         )
     }
@@ -28,7 +28,7 @@ export default function Nav() {
 
   return (
     <Stack isInline w="full" h='full' px={20} py={10} bg='red.200' justifyContent='space-between'>
-      <Heading>Alvaro&apos;s Movie Watchlist</Heading>
+      <Heading>My Movie Watchlist</Heading>
       {pathname && NavDisplay(pathname)}
     </Stack>
   )
