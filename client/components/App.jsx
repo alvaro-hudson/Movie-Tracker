@@ -6,22 +6,27 @@ import AddMovie from './AddMovie'
 import { Routes, Route } from 'react-router'
 import {
   Box,
-  Flex
+  Flex,
 } from '@chakra-ui/core'
 
 
 function App () {
+
+  
+
   return (
-      <Box Width='100%' padding={0}>
-        <Flex flexDirection='column'>
-          <Nav />
-          <Routes>
-            <Route path='/' element={ <ShowMovies /> } />
-            <Route path='/movies/:imdbId' element={ <OneMovie />} />
-            <Route path='/add' element={<AddMovie />}></Route>
-          </Routes>
-        </Flex>
-      </Box>
+
+    <Box Width='100%' padding={0} >
+      <Flex flexDirection='column'>
+        <Nav />
+        <Routes>
+          <Route path='/' element={ <ShowMovies /> } />
+          <Route path='/movies/:imdbId' element={ <OneMovie />} />
+          <Route path='/add' element={<AddMovie />}></Route>
+        </Routes>
+      </Flex>
+    </Box>
+   
   )
 }
 
