@@ -3,6 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { getImdbInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { removeMovie } from '../actions/actions'
+import {
+  Stack,
+  Image,
+  AspectRatioBox,
+  Heading,
+  Text,
+  Button
+} from '@chakra-ui/core'
 
 function OneMovie() {
 
@@ -33,24 +41,27 @@ function OneMovie() {
     setTimeout(() => navigate('/'), 1200)
   }
 
+  console.log(movie)
 
   return (
-    <div className='one-movie-container'>
-      <div className='one-movie-image'>
-        <img src={movie.image} alt={`Movie poster for ${movie.image}`} />
-      </div>
-      <div className='one-movie-text'>
-        <h1>{movie.title}   ({movie.year})</h1>
-        <button>Watched</button>
-        {deleted ? <button className='delete-btn' onClick={handleClick}>Delete</button> : <p>DELETED</p> }
-        <p><em>{movie.awards}</em></p>
-        <p><em>{movie.genres}</em></p>
-        <p><em>{movie.runtimeStr}</em></p>
-        <p>{movie.plot}</p>
-        <p>Cast: {movie.stars}</p>
-        <p>Director: {movie.directors}</p>
-      </div>
-    </div>
+    <Stack isInline bg='black' color='white'>
+      <AspectRatioBox w='40%' h='80%' ratio={4/6} p={6}>
+        <Image src={movie.image} alt={`Movie poster for ${movie.image}`} />
+      </AspectRatioBox>
+      <Stack className='one-movie-text' w='60%' p={6}>
+        <Heading>{movie.title}   ({movie.year})</Heading>
+        <Stack isInline>
+          <Button color='black'>Watched</Button>
+          {deleted ? <Button className='delete-btn' color='black' onClick={handleClick}>Delete</Button> : <p>DELETED</p> }
+        </Stack>
+        <Text as='i'>{movie.awards}</Text>
+        <Text as='i'>{movie.genres}</Text>
+        <Text as='i'>{movie.runtimeStr}</Text>
+        <Text paddingTop={6} paddingBottom={6}>{movie.plot}</Text>
+        <Text>Cast: {movie.stars}</Text>
+        <Text>Director: {movie.directors}</Text>
+      </Stack>
+    </Stack>
   )
 }
 
