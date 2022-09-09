@@ -3,6 +3,17 @@ import { useDispatch } from 'react-redux'
 import { searchImdbInfo } from '../apis/apiClient'
 import MovieTile from './MovieTile'
 import { pushMovie } from '../actions/actions'
+import {
+  Heading,
+  Stack,
+  Input,
+  Button,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Grid
+
+} from '@chakra-ui/core'
 // import { MovieSearch } from './MovieSearch'
 
 function AddMovie() {
@@ -38,22 +49,18 @@ function AddMovie() {
   }
 
   return (
-    <>
-      <h1>Add New Movie</h1>
-
-
-      <div className='add-movie-form-container'>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="search">Search </label>
-          <input type="text" name="search" id="search" onChange={handleChange}/>
-          <button>Done</button>
-        </form>
-      </div>
-
-      <div className='add-movie-results'>
-        {result && <MovieTile clickHandler={clickHandler} result={result}/>}
-      </div>
-    </>
+    <Stack h='auto' w='100%' color='white' alignContent='center' justifyContent='center' direction='column'> 
+      <Heading>Add New Movie</Heading>
+      <FormControl onSubmit={handleSubmit}>
+        <FormLabel htmlFor="search">Search </FormLabel>
+        <Input type="text" name="search" id="search" onChange={handleChange}/>
+        <FormHelperText id="search">Find a movie to add</FormHelperText>
+        <Button color='black'>Search</Button>
+      </FormControl>
+      <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6} h='auto'>
+      {result && <MovieTile clickHandler={clickHandler} result={result}/>}
+      </Grid>
+    </Stack>
   )
 }
 
