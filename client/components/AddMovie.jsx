@@ -32,6 +32,8 @@ function AddMovie() {
       .then(res => {
         console.log('results', res.results)
         getResults(res.results)
+        
+        window.sessionStorage.getItem("searchDetails") ? window.sessionStorage.getItem("searchDetails") : {searchQuery:`${search}`,searchResults: `${result}`}
       })
       .catch(err => {
         console.log(err)
@@ -49,12 +51,14 @@ function AddMovie() {
 
   return (
     <>
-      <Stack h='auto' w='100%' color='white'> 
-        <Heading>Add New Movie</Heading>
+      <Stack h='auto' w='100%' color='white' p={6}> 
+        <Heading as='h2' size='lg' textAlign='center'>Add New Movie</Heading>
         <form onSubmit={handleSubmit}>
-          <FormLabel htmlFor="search">Search</FormLabel>
-          <Input type="text" name="search" id="search" placeholder='Find a movie to add' onChange={handleChange}/>
-          <Button type='submit' color='black'>Search</Button>
+          <FormControl display='flex' justifyContent='center' alignItems='center' flexDirection='column'>
+            <FormLabel htmlFor="search" textAlign='center'>Search</FormLabel>
+            <Input type="text" name="search" id="search" placeholder='Find a movie to add' textAlign='center' color='black' onChange={handleChange}/>
+            <Button type='submit' color='black'>Search</Button>
+          </FormControl> 
         </form>
       </Stack>
       <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6} h='100px'>
