@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormHelperText,
   Grid
-
 } from '@chakra-ui/core'
 // import { MovieSearch } from './MovieSearch'
 
@@ -22,16 +21,18 @@ function AddMovie() {
   const [search, setSearch] = useState('')
   const [result, getResults] = useState([])
 
-  // console.log('RESULTS', result)
+  console.log('RESULTS', result)
 
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
 
   const handleSubmit = (e) => {
+    console.log('hello')
     e.preventDefault()
     searchImdbInfo(search)
       .then(res => {
+        console.log('results', res.results)
         getResults(res.results)
       })
       .catch(err => {
@@ -49,18 +50,20 @@ function AddMovie() {
   }
 
   return (
-    <Stack h='auto' w='100%' color='white' alignContent='center' justifyContent='center' direction='column'> 
-      <Heading>Add New Movie</Heading>
-      <FormControl onSubmit={handleSubmit}>
-        <FormLabel htmlFor="search">Search </FormLabel>
-        <Input type="text" name="search" id="search" onChange={handleChange}/>
-        <FormHelperText id="search">Find a movie to add</FormHelperText>
-        <Button color='black'>Search</Button>
-      </FormControl>
-      <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6} h='auto'>
+    <>
+      <Stack h='auto' w='100%' color='white'> 
+        <Heading>Add New Movie</Heading>
+        <form onSubmit={handleSubmit}>
+          <FormLabel htmlFor="search">Search</FormLabel>
+          <Input type="text" name="search" id="search" placeholder='Find a movie to add' onChange={handleChange}/>
+          <Button color='black'>Search</Button>
+        </form>
+      </Stack>
+      <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6} h='100px'>
       {result && <MovieTile clickHandler={clickHandler} result={result}/>}
       </Grid>
-    </Stack>
+    </>
+   
   )
 }
 
