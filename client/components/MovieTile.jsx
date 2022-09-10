@@ -2,17 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {
 Image,
-Grid,
 Text,
 Button,
 Box,
-AspectRatioBox,
 Heading
 } from '@chakra-ui/core'
 
 
 function MovieTile ({ clickHandler, result }) {
-  console.log('movietile', result)
 
 
   return (

@@ -21,8 +21,6 @@ function AddMovie() {
   const [search, setSearch] = useState('')
   const [result, getResults] = useState([])
 
-  console.log('RESULTS', result)
-
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
@@ -56,7 +54,7 @@ function AddMovie() {
         <form onSubmit={handleSubmit}>
           <FormLabel htmlFor="search">Search</FormLabel>
           <Input type="text" name="search" id="search" placeholder='Find a movie to add' onChange={handleChange}/>
-          <Button color='black'>Search</Button>
+          <Button type='submit' color='black'>Search</Button>
         </form>
       </Stack>
       <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6} h='100px'>
