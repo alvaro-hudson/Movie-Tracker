@@ -54,7 +54,7 @@ function AddMovie() {
         <Heading as='h2' size='lg' textAlign='center'>Add New Movie</Heading>
         <form onSubmit={handleSubmit}>
           <FormControl display='flex' justifyContent='center' alignItems='center' flexDirection='column'>
-            <FormLabel htmlFor="search" textAlign='center'>Search</FormLabel>
+            <FormLabel htmlFor="search" textAlign='center' p={4}>Search</FormLabel>
             <Input type="text" name="search" id="search" placeholder='Find a movie to add' textAlign='center' color='black' w={{small: '80%', md: '60%', lg: '40%', xl: '30%'}} onChange={handleChange}/>
             <Button type='submit' color='black' margin={4}>Search</Button>
           </FormControl> 
