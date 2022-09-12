@@ -10,7 +10,6 @@ import {
   Button,
   FormControl,
   FormLabel,
-  FormHelperText,
   Grid
 } from '@chakra-ui/core'
 // import { MovieSearch } from './MovieSearch'
@@ -56,8 +55,8 @@ function AddMovie() {
         <form onSubmit={handleSubmit}>
           <FormControl display='flex' justifyContent='center' alignItems='center' flexDirection='column'>
             <FormLabel htmlFor="search" textAlign='center'>Search</FormLabel>
-            <Input type="text" name="search" id="search" placeholder='Find a movie to add' textAlign='center' color='black' onChange={handleChange}/>
-            <Button type='submit' color='black'>Search</Button>
+            <Input type="text" name="search" id="search" placeholder='Find a movie to add' textAlign='center' color='black' w={{small: '80%', md: '60%', lg: '40%', xl: '30%'}} onChange={handleChange}/>
+            <Button type='submit' color='black' margin={4}>Search</Button>
           </FormControl> 
         </form>
       </Stack>
