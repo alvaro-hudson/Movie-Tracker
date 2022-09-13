@@ -44,3 +44,15 @@ router.delete('/:id', (req, res) => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
+
+router.patch('/:id', (req, res) => {
+  const id = req.params.id
+  const watched = req.body
+  db.updateWatched(id, watched)
+    .then((res) => {
+      res.json(res)
+    })
+    .catch((err) => {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
