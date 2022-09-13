@@ -17,7 +17,7 @@ function deleteMovie(id, db = connection) {
 }
 
 function updateWatched(id, watched, db = connection) {
-  return db('movies').update(watched).where('id', id)
+  return db('movies').update(watched).where('imdb_id', id)
 }
 
 

@@ -14,13 +14,17 @@ export function getImdbInfo(imdbId) {
 }
 
 export function searchImdbInfo(name) {
-  return request.get(`${searchApi}/${name}`).then((res) => res.body)
+  return request
+  .get(`${searchApi}/${name}`)
+  .then((res) => res.body)
 }
 
 //Database functions
 
 export function retrieveMovies() {
-  return request.get(rootUrl).then((res) => res.body) //this gets all the movies from the database
+  return request
+  .get(rootUrl)
+  .then((res) => res.body) //this gets all the movies from the database
 }
 
 export function insertMovie(newMovie) {
@@ -33,3 +37,13 @@ export function insertMovie(newMovie) {
 export function deleteMovie(id) {
   return request.del(`${rootUrl}/${id}`).then(res => res.body) //this returns status 200
 }
+
+export function updateMovie(id, watched) {
+  return request
+  .patch(`${rootUrl}/${id}`)
+  .send(watched)
+  .then((res) => res)
+}
+
+
+
