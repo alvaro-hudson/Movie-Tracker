@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getImdbInfo } from '../apis/apiClient'
+import { getImdbInfo, updateMovie } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { removeMovie } from '../actions/actions'
 import {
