@@ -51,7 +51,7 @@ function OneMovie() {
       <Stack className='one-movie-text' w='60%' h='100%'>
         <Heading>{movie.title}   ({movie.year})</Heading>
         <Stack isInline>
-          <Button color='black'>Watched</Button>
+          <Button color='black'>Watched?</Button>
           {deleted ? <Button className='delete-btn' color='black' onClick={handleClick}>Delete</Button> : <p>DELETED</p> }
         </Stack>
         <Text as='i'>{movie.awards}</Text>
@@ -66,3 +66,24 @@ function OneMovie() {
 }
 
 export default OneMovie
+
+
+
+
+
+
+/*To change the movie to show it's been watched
+
+Goal 1 -> When the button is clicked it needs to go back to the database to update the entry 'watched' to switch from false to true
+  How: Clicking the 'Watched' button will trigger a function that will call
+  the updateMovie function from the APIClient file
+
+Goal 2 -> If something is watched I want the button to change to something that 
+says watched and maybe a tick and it's green. If you click it again it toggles
+back to the original default not watched button. It's going to have to be like this
+so when you go to any movie, if the db says it's watched then it will show the 
+correct button
+  How: When I update the DB I also need to update the Redux State. I then need to call the state from here, perhaps useEffect() so on loading I can display the button based on whether 'watched' is true or false. Also when I click the watched button it will need to update and refresh the redux state
+
+*/
+  
