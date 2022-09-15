@@ -26,11 +26,11 @@ function ShowMovies () {
   
   return (
     <Stack isInline w='full' h='auto' bg='black' color='white'>
-      <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)', xl: 'repeat(5, 1fr)' }} templateRows='auto' gap={6} p={6}>
+      <Grid templateColumns={{ small: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)', lg: 'repeat(5, 1fr)', xl: 'repeat(7, 1fr)' }} templateRows='auto' gap={6} p={6}>
       {movies.map(movie => {
         return (
 
-        <Box size="2xs" p={5} justifyItems='center' key={movie.id} w='100%' h='auto' borderRadius={20} bg='gray.800' className='movie-hover'>
+        <Box p={5} justifyItems='center' key={movie.id} w='100%' h='auto' borderRadius={20} bg='gray.800' className='movie-hover'>
           <Link to={`/movies/${movie.imdb_id}`}>
             <AspectRatioBox ratio={4/6}>
               <Image src={movie.img} alt={`Cinema poster for ${movie.title}`} />
