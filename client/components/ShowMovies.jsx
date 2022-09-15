@@ -16,12 +16,11 @@ function ShowMovies () {
   const dispatch = useDispatch()
   
   const movies = useSelector(state => state.movies)
-  // console.log('MOVIES STATE', movies)
+  console.log('MOVIES STATE', movies)
 
   useEffect(() => {
     return dispatch(fetchMovies())
   }, [])
-
 
   
   return (

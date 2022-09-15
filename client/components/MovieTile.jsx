@@ -11,7 +11,6 @@ Heading
 
 function MovieTile ({ clickHandler, result }) {
 
-
   return (
     
     result.map(movie => {

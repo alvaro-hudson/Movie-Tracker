@@ -1,8 +1,9 @@
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES'
 export const ADD_MOVIE = 'ADD_MOVIE'
 export const DEL_MOVIE = 'DEL_MOVIE'
+export const UPDATE_MOVIE = 'UPDATE_MOVIE'
 
-import { retrieveMovies, insertMovie, deleteMovie } from '../apis/apiClient'
+import { retrieveMovies, insertMovie, deleteMovie, updateMovie } from '../apis/apiClient'
 
 //Actions
 
@@ -66,5 +67,12 @@ export function removeMovie(id) {
       .catch((err) => {
         console.log(err)
       })
+  }
+}
+
+export function updateWatched(id, watched) {
+  return (dispatch) => {
+    console.log('You made it to meee', id, watched)
+    return updateMovie(id, watched)
   }
 }

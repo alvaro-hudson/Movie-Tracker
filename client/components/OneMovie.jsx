@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getImdbInfo, updateMovie } from '../apis/apiClient'
+import { getImdbInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
-import { removeMovie } from '../actions/actions'
+import { removeMovie, updateWatched } from '../actions/actions'
 import {
   Stack,
   Image,
@@ -41,7 +41,13 @@ function OneMovie() {
     setTimeout(() => navigate('/'), 1200)
   }
 
-  console.log(movie)
+  //To Update 'Watched' key in database
+  const handleWatched = () => {
+    dispatch(updateWatched(imdbId, {
+      watched: true
+    }))
+  }
+
 
   return (
     <Stack isInline bg='black' color='white' h='100%' p={10}>
@@ -51,8 +57,8 @@ function OneMovie() {
       <Stack className='one-movie-text' w='60%' h='100%'>
         <Heading>{movie.title}   ({movie.year})</Heading>
         <Stack isInline>
-          <Button color='black'>Watched?</Button>
-          {deleted ? <Button className='delete-btn' color='black' onClick={handleClick}>Delete</Button> : <p>DELETED</p> }
+          <Button color='black' onClick={handleWatched}>Not Watched</Button>
+          {deleted ? <Button className='delete-btn' color='black' onClick={handleClick}>Delete</Button> : <Text color='red.500'>DELETED</Text> }
         </Stack>
         <Text as='i'>{movie.awards}</Text>
         <Text as='i'>{movie.genres}</Text>

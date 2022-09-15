@@ -49,8 +49,8 @@ router.patch('/:id', (req, res) => {
   const id = req.params.id
   const watched = req.body
   db.updateWatched(id, watched)
-    .then((response) => {
-      res.json(response)
+    .then(() => {
+      res.sendStatus(200)
     })
     .catch((err) => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
