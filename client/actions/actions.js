@@ -29,6 +29,14 @@ export function delMovie(id) {
   }
 }
 
+export function updWatched(imdbId, watched) {
+  console.log('Im nearly there',imdbId, watched)
+  return {
+    type: UPDATE_MOVIE,
+    payload: {imdbId, watched}
+  }
+}
+
 
 //Thunks
 
@@ -70,9 +78,12 @@ export function removeMovie(id) {
   }
 }
 
-export function updateWatched(id, watched) {
+export function updateWatched(imdbId, watched) {
   return (dispatch) => {
-    console.log('You made it to meee', id, watched)
-    return updateMovie(id, watched)
+    console.log('You made it to meee', imdbId, watched)
+    return updateMovie(imdbId, watched)
+      .then(() => {
+        dispatch(updWatched(imdbId, watched))
+      })
   }
 }
