@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getImdbInfo } from '../apis/apiClient'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { removeMovie, updateWatched } from '../actions/actions'
 import {
   Stack,
@@ -14,14 +14,21 @@ import {
 
 function OneMovie() {
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch() //to trigger the delete thunk in the handleClick function below
+  const navigate = useNavigate() //in the handleClick it allows the url to change 
+  const { imdbId } = useParams() // const imdbId = useParams().imdbId   //This is the same version as above but written out differently
 
-  const { imdbId } = useParams()
-  // const imdbId = useParams().imdbId   //This is the same version as above but written out differently
+  //Below code is not working as planned. Idea is try get the movies from global state and if it's 'watched' this influences the watched button that's displayed. 
+  // I might need to make this a useState perhaps..
+  const movies = useSelector(state => state.movies)
+  const thisMovie = movies.filter(movie => {
+    if (movie.imdb_id == imdbId) {
+      return movie
+    }
+  })
+  // console.log('thisImdb', thisMovie[0].watched)
 
   const [movie, movieInfo] = useState([])
-  // {movie && console.log('IMDB INFO', movie)}
   const [deleted, deleteStatus] = useState(true)
 
   useEffect(() => {
@@ -57,7 +64,8 @@ function OneMovie() {
       <Stack className='one-movie-text' w='60%' h='100%'>
         <Heading>{movie.title}   ({movie.year})</Heading>
         <Stack isInline>
-          <Button color='black' onClick={handleWatched}>Not Watched</Button>
+          {/* Need to keep working on the below */}
+           {thisMovie[0].watched ? <Button color='black' onClick={handleWatched}>Not Watched</Button> : <Text bg={'green.500'}>Watched!!!</Text>}
           {deleted ? <Button className='delete-btn' color='black' onClick={handleClick}>Delete</Button> : <Text color='red.500'>DELETED</Text> }
         </Stack>
         <Text as='i'>{movie.awards}</Text>

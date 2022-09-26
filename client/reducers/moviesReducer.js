@@ -14,7 +14,6 @@ const MoviesReducer = (state = [], action) => {
       console.log(payload)
       return state.filter(movie => {
         if (movie.imdb_id === payload.id) {
-          console.log('movie', movie)
           movie.watched = payload.watched
         }
       })
