@@ -32,7 +32,7 @@ function AddMovie() {
         console.log('results', res.results)
         getResults(res.results)
         
-        window.sessionStorage.getItem("searchDetails") ? window.sessionStorage.getItem("searchDetails") : {searchQuery:`${search}`,searchResults: `${result}`}
+        // window.sessionStorage.getItem("searchDetails") ? window.sessionStorage.getItem("searchDetails") : {searchQuery:`${search}`,searchResults: `${result}`}
       })
       .catch(err => {
         console.log(err)

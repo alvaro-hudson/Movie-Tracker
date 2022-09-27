@@ -30,7 +30,7 @@ function ShowMovies () {
         return (
 
         <Box p={5} justifyItems='center' key={movie.id} w='100%' h='auto' borderRadius={20} bg='gray.800' className='movie-hover'>
-          <Link to={`/movies/${movie.imdb_id}`}>
+          <Link to={`/movies/${movie.imdb_id}`} state={{ movie }}>  {/* state allows you to pass props to that component that the route calls. You can then use useLocation to grab the prop */}
             <AspectRatioBox ratio={4/6}>
               <Image src={movie.img} alt={`Cinema poster for ${movie.title}`} />
             </AspectRatioBox>
